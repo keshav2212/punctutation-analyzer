@@ -8,12 +8,23 @@ def keshav(request):
 	djchecki2=request.GET.get('UPPER','off')
 	Punctuation='''""{}[]<,>.?/!@#$%^&*()_+=|\`~;:'''
 	if(djchecki=='on'):
-		analyzed=""
-		for char in djtext:
-			if char not in Punctuation:
-				analyzed=analyzed+char
-		params={'purpose':'Remove Punctuation','analyze_text':analyzed}
-		return render(request,'analyize.html',params)
+			if(djchecki2=="on"):
+				analyzed=""
+				bua=""
+				for char in djtext:
+					if char not in Punctuation:
+						analyzed=analyzed+char
+				for char in analyzed:
+					bua=bua+char.upper()
+				params={'purpose':'Both Operations','analyze_text':bua}
+				return render(request,'analyize.html',params)
+			else:
+				analyzed=""
+				for char in djtext:
+					if char not in Punctuation:
+						analyzed=analyzed+char
+				params={'purpose':'Remove Punctuation','analyze_text':analyzed}
+				return render(request,'analyize.html',params)
 	elif(djchecki2=="on"):
 		analyzed=""
 		for char in djtext:
@@ -21,6 +32,6 @@ def keshav(request):
 		params={'purpose':'For Converting in Upper case','analyze_text':analyzed}
 		return render(request,'analyize.html',params)
 	else:
-		return HttpResponse("Error!")
+		request(HttpResponse('error404'))
 def chinu(request):
 	return HttpResponse("Hello Chinu")
