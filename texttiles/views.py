@@ -3,11 +3,11 @@ from django.shortcuts import render
 def index(request):
 	return render(request,'index.html')
 def keshav(request):
-	djtext=request.GET.get('text','default')
-	djchecki=request.GET.get('esehi','off')
-	djchecki2=request.GET.get('UPPER','off')
-	djchecki3=request.GET.get('newlineremover','off')
-	djchecki4=request.GET.get('extraspaceremover','off')
+	djtext=request.POST.get('text','default')
+	djchecki=request.POST.get('esehi','off')
+	djchecki2=request.POST.get('UPPER','off')
+	djchecki3=request.POST.get('newlineremover','off')
+	djchecki4=request.POST.get('extraspaceremover','off')
 	Punctuation='''""{}[]<,>.?/!@#$%^&*()_+=|\`~;:'''
 	if(djchecki=='on'):
 			if(djchecki2=="on"):
