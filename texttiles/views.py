@@ -26,7 +26,7 @@ def keshav(request):
 				#return render(request,'analyize.html',params)
 	if(djchecki3=='on'):
 		analyzed=""
-		for char in djtext:
+		for char in djtext: 
 			if (char!='\n' and char!='\r'):
 				analyzed=analyzed+char
 		params={'purpose':'New line remover','analyze_text':analyzed}
@@ -41,8 +41,7 @@ def keshav(request):
 				analyzed=analyzed+char
 		params={'purpose':'Extra Space remover','analyze_text':analyzed}
 	if(djchecki!='on' and djchecki2!='on' and djchecki3!='on' and djchecki4!='on' ):
-		return HttpResponse("Error404")
+		return render(request,"error.html")
 	return render(request,'analyize.html',params)
+
 	
-def chinu(request):
-	return HttpResponse("Hello Chinu")
