@@ -10,37 +10,29 @@ def keshav(request):
 	djchecki4=request.POST.get('extraspaceremover','off')
 	Punctuation='''""{}[]<,>.?/!@#$%^&*()_+=|\`~;:'''
 	if(djchecki=='on'):
-			if(djchecki2=="on"):
-				analyzed=""
-				bua=""
-				for char in djtext:
-					if char not in Punctuation:
-						analyzed=analyzed+char
-				for char in analyzed:
-					bua=bua+char.upper()
-				params={'purpose':'Both Operations','analyze_text':bua}
-				return render(request,'analyize.html',params)
-			else:
-				analyzed=""
-				for char in djtext:
-					if char not in Punctuation:
-						analyzed=analyzed+char
-				params={'purpose':'Remove Punctuation','analyze_text':analyzed}
-				return render(request,'analyize.html',params)
-	elif(djchecki2=="on"):
+		analyzed=""
+		bua=""
+		for char in djtext:
+			if char not in Punctuation:
+				analyzed=analyzed+char
+		djtext=analyzed
+		params={'purpose':'Remove Punctuation','analyze_text':analyzed}
+	if(djchecki2=="on"):
 		analyzed=""
 		for char in djtext:
 			analyzed=analyzed+char.upper()
-		params={'purpose':'For Converting in Upper case','analyze_text':analyzed}
-		return render(request,'analyize.html',params)
-	elif(djchecki3=='on'):
+		params={'purpose':'To Upper Case','analyze_text':analyzed}
+		djtext=analyzed
+				#return render(request,'analyize.html',params)
+	if(djchecki3=='on'):
 		analyzed=""
 		for char in djtext:
 			if (char!='\n' and char!='\r'):
 				analyzed=analyzed+char
 		params={'purpose':'New line remover','analyze_text':analyzed}
-		return render(request,'analyize.html',params)
-	elif(djchecki4=='on'):
+		djtext=analyzed
+		#return render(request,'analyize.html',params)
+	if(djchecki4=='on'):
 		analyzed=""
 		for index,char in enumerate(djtext):
 			if (djtext[index]==' ' and djtext[index+1]==' '):
@@ -48,9 +40,9 @@ def keshav(request):
 			else:
 				analyzed=analyzed+char
 		params={'purpose':'Extra Space remover','analyze_text':analyzed}
-		return render(request,'analyize.html',params)
-	else:
+	if(djchecki!='on' and djchecki2!='on' and djchecki3!='on' and djchecki4!='on' ):
 		return HttpResponse("Error404")
-
+	return render(request,'analyize.html',params)
+	
 def chinu(request):
 	return HttpResponse("Hello Chinu")
