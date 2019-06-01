@@ -36,7 +36,7 @@ def keshav(request):
 	elif(djchecki3=='on'):
 		analyzed=""
 		for char in djtext:
-			if char!='\n':
+			if (char!='\n' and char!='\r'):
 				analyzed=analyzed+char
 		params={'purpose':'New line remover','analyze_text':analyzed}
 		return render(request,'analyize.html',params)
